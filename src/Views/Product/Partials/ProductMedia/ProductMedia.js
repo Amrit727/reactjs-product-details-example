@@ -6,8 +6,7 @@ import { isArray } from "util";
 import {
     Carousel,
     CarouselItem,
-    CarouselControl,
-    CarouselIndicators
+    CarouselControl
 } from 'reactstrap';
 
 import './ProductMedia.css';
@@ -24,6 +23,8 @@ class ProductMedia extends Component {
     }
 
     setItems() {
+        this.items = [];
+
         // Iterate product variants if is an array
         if (this.props != null && isArray(this.props.filteredVariants)) {
             this.props.filteredVariants.forEach(variant => {
@@ -32,7 +33,7 @@ class ProductMedia extends Component {
                 if (isArray(variant.images)) {
                     variant.images.forEach(url => {
                         this.items.push({
-                            src: url + '?key=' + Math.random(),
+                            src: url ,
                             altText: '',
                             caption: ''
                         })
@@ -60,6 +61,8 @@ class ProductMedia extends Component {
     }
 
     getThumbnailMenu() {
+        const { activeIndex } = this.state;
+
         const thumbnails = this.items.map((item, index) => {
             return (
                 <div className="menu-item" key={index}>
@@ -85,7 +88,7 @@ class ProductMedia extends Component {
                     data={thumbnails}
                     arrowLeft={ArrowLeft}
                     arrowRight={ArrowRight}
-                    selected={this.activeIndex}
+                    selected={activeIndex}
                     onSelect={this.onSelect}
                 />
             </div>
@@ -101,7 +104,7 @@ class ProductMedia extends Component {
         // Create slides
         const slides = this.items.map((item) => {
             return (
-                <CarouselItem key={item.src}>
+                <CarouselItem key={item.src + '-' + Math.random()}>
                     <img src={item.src} alt={item.altText} />
                 </CarouselItem>
             );
@@ -120,7 +123,6 @@ class ProductMedia extends Component {
                             next={this.next}
                             previous={this.previous}
                         >
-                            <CarouselIndicators items={this.items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
                             {slides}
                             <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
                             <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
@@ -133,7 +135,7 @@ class ProductMedia extends Component {
             );
         } else {
             return (
-                <div>No Images</div>
+                <div className="product-image-error">Aradığınız kriterlere uygun ürün bulunamamıştır.</div>
             );
         }
     }

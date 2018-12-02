@@ -6,7 +6,7 @@ const header = (props) => {
 
     return (
         <div className="product-header">
-            <h2>{product.title}</h2>
+            <h3>{product.title}</h3>
             <span>{
                 product.price != null
                     ? product.price.value + ' ' +product.price.currency

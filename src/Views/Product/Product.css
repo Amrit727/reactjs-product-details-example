@@ -34,3 +34,7 @@
         width: 100%;
     }
 }
+
+.details-section > * {
+    margin-bottom: 32px;
+}

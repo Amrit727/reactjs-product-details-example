@@ -1,0 +1,50 @@
+.filter-group {
+    display: flex;
+    width: 100%;
+    margin-bottom: 16px;
+    justify-content: space-between;
+    flex-flow: row;
+}
+
+.filter-group .filter-name {
+    width: 100px;
+}
+
+
+.filter-group .filter-buttons {
+    flex: 1 1 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row;
+}
+
+.filter-group .filter-buttons .btn {
+    flex: 1 1 auto;
+    margin-left: 8px;
+}
+
+.filter-group .btn-outline-secondary {
+    color: #000;
+}
+
+.filter-group .btn-outline-secondary:hover {
+    color: #fff;
+}
+
+.filter-group .btn {
+    position: relative;
+    border-color: #ccc;
+}
+
+.filter-group .btn.active::after {
+    content: "x";
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 12px;
+    font-weight: lighter;
+}
+
+.filter-group .btn:disabled {
+    cursor: not-allowed;
+}

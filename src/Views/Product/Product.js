@@ -32,10 +32,7 @@ class Product extends Component {
 
 const mapStateToProps = state => {
     return {
-        product: state.product,
-        filters: state.filters,
-        filteredVariants: state.filteredVariants,
-        priceRange: state.priceRange
+        product: state.product
     }
 }
 
