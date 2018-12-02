@@ -77,6 +77,17 @@ class ProductPricing extends Component {
         if (isArray(this.props.product.baremList)) {
             const currentPriceRange = this.props.priceRange;
 
+            // Check input validity by current range
+            let inputOptions = {};
+            const range = [...this.props.product.baremList]
+            const minRange = range.reduce((min, p) => p.minimumQuantity < min ? p.minimumQuantity : min, range[0].minimumQuantity);
+            
+            if (currentPriceRange.minimumQuantity < minRange) {
+                inputOptions.invalid = true;
+            } else {
+                inputOptions = {};
+            }
+
             // Generate range boxes
             const pricingRanges = this.props.product.baremList.map((barem, index, array) => {
                 let className = 'pricing-range';
@@ -106,7 +117,9 @@ class ProductPricing extends Component {
                         <div className="pricing-group-name detail-title">Adet</div>
                         <div className="pricing-group-content detail-block">
                             <div className="pricing-range-input">
-                                <Input onChange={this.pricingInputChangeHandler.bind(this)} onKeyPress={this.pricingInputKeypressHandler} max="500" min="1" />
+                                <Input onChange={this.pricingInputChangeHandler.bind(this)} 
+                                    onKeyPress={this.pricingInputKeypressHandler}
+                                    {...inputOptions} />
                                 <span>Adet</span>
                             </div>
                             <Button outline color="success" size="sm">Stok Adedi: 500</Button>

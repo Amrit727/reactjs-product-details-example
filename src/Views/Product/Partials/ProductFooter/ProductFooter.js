@@ -3,7 +3,22 @@ import { Button } from 'reactstrap';
 
 import './ProductFooter.css';
 
+const addToCartClickHandler = (props) => {
+    console.log('Barem aralığı: ');
+    console.log(props.priceRange);
+    console.log('Seçilen ürün(ler): ');
+    console.log(props.products);
+} 
+
 const footer = (props) => {
+    let options = {};
+
+    if (props.optionsSelectedCount === props.optionsCount && props.priceRange.price > 0) {
+        options = {};
+    } else {
+        options.disabled = true;
+    }
+
     return (
         <footer className="product-footer detail-container">
             <b className="product-footer-title detail-title">Toplam</b>
@@ -14,7 +29,10 @@ const footer = (props) => {
                 </div>
                 <div className="product-actions mt-16">
                     <div className="product-action">
-                        <Button color="warning" size="lg" block>SEPETE EKLE</Button>
+                        <Button onClick={() => addToCartClickHandler(props)} 
+                            color="warning" 
+                            size="lg" 
+                            block {...options}>SEPETE EKLE</Button>
                     </div>
                     <div className="product-action pl-16">
                         <a href="/">Ödeme Seçenekleri</a>

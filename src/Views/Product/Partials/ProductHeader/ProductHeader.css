@@ -1,3 +1,11 @@
-.product-header {
-    
+.product-star-container {
+    position: relative; 
+    top: -5px; 
+    display: inline-block;
+}
+
+.product-header .subheader {
+    color: #ccc;
+    font-size: 14px;
+    font-weight: normal;
 }

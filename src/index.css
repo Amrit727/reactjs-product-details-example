@@ -23,6 +23,10 @@ code {
     margin-top: 16px;
 }
 
+.mb-16 {
+    margin-bottom: 16px;
+}
+
 .mb-0 {
     margin-bottom: 0;
 }
@@ -33,4 +37,8 @@ code {
 
 .btn-warning {
     color: #fff;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
 }

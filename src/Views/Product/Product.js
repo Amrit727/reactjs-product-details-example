@@ -27,7 +27,13 @@ class Product extends Component {
                     <ProductHeader product={this.props.product} />
                     <ProductFilters />
                     <ProductPricing />
-                    <ProductFooter summary={this.props.summary} currency={this.props.product.currency} />
+                    <ProductFooter 
+                        summary={this.props.summary} 
+                        currency={this.props.product.currency}
+                        priceRange={this.props.priceRange}
+                        products={this.props.products}
+                        optionsSelectedCount={this.props.filters.length}
+                        optionsCount={this.props.options.length} />
                 </section>
             </div>
         )
@@ -37,7 +43,11 @@ class Product extends Component {
 const mapStateToProps = state => {
     return {
         product: state.product,
-        summary: state.summary
+        summary: state.summary,
+        priceRange: state.priceRange,
+        filters: state.filters,
+        options: state.selectableAttributes,
+        products: state.filteredVariants
     }
 }
 

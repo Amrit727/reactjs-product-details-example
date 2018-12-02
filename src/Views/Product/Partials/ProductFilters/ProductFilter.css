@@ -34,7 +34,3 @@
     font-size: 12px;
     font-weight: lighter;
 }
-
-.filter-group .btn:disabled {
-    cursor: not-allowed;
-}
