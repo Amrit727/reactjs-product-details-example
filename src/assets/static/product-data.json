@@ -1,10 +1,6 @@
 {
     "title": "İş Tulumu Bahçıvan Tip Askılı",
     "currency": "TL",
-    "priceRange": {
-        "from": 79.99,
-        "to": 99.99
-    },
     "selectableAttributes": [
         {
             "name": "Renk",
