@@ -1,5 +1,9 @@
 {
-    "productTitle": "İş Tulumu Bahçıvan Tip Askılı",
+    "title": "İş Tulumu Bahçıvan Tip Askılı",
+    "price": {
+        "currency": "TL",
+        "value": 3000.00
+    },
     "selectableAttributes": [
         {
             "name": "Renk",

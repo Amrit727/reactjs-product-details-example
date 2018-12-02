@@ -3,13 +3,34 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 1200px;
+    margin: 0 auto;
+    padding: 32px 0;
 }
 
 .product > section {
     flex: 1 1 auto;
     width: 600px;
+    padding: 0 16px;
 }
 
-.product .media-section {
+@media screen and (max-width: 1200px) {
+    .product {
+        width: 960px;
+    }
 
+    .product > section {
+        width: 480px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .product {
+        display: block;
+        width: 100%;
+        padding: 0;
+    }
+
+    .product > section {
+        width: 100%;
+    }
 }
