@@ -65,9 +65,9 @@ class ProductFilters extends Component {
 
                 // Add button group
                 filters.push(
-                    <div className={'filter-group'} key={'group-' + attr.name}>
-                        <div className="filter-name" key={attr.name}>{attr.name}</div>
-                        <div className="filter-buttons">{buttons}</div>
+                    <div className="filter-group detail-container" key={'group-' + attr.name}>
+                        <div className="filter-name detail-title" key={attr.name}>{attr.name}</div>
+                        <div className="filter-buttons detail-block">{buttons}</div>
                     </div>
                 );
             });

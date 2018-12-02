@@ -1,34 +1,32 @@
 .product-pricing {
-        margin-left: -16px;
+    margin-left: -16px;
     padding: 16px;
     background-color: whitesmoke;
 }
 
 .pricing-group {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
     margin-bottom: 16px;
 }
 
-.pricing-group-name {
-    width: 132px;
-}
-
 .pricing-group-content {
-    flex: 1 1 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .pricing-range {
-    padding: 8px;
+    padding: 8px 16px;
+    flex: 1 1 100%;
+    border-left: 1px solid #ddd;
+}
+
+.pricing-range:first-child {
+    border-left: none;
 }
 
 .pricing-range.active {
     background-color: wheat;
+    font-weight: bold;
 }
 
 .pricing-range-input {
@@ -36,6 +34,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-left: 8px;
 }
 
 .pricing-range-input .form-control {

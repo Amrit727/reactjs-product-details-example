@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Input } from 'reactstrap';
+import { Input, Button } from 'reactstrap';
 
 import './ProductPricing.css';
-import { setPriceRange } from '../../../../store/actions';
+import { setPriceRange, setSummary } from '../../../../store/actions';
 import { isArray } from 'util';
 
 class ProductPricing extends Component {
 
     resetPriceRange() {
+        this.props.setSummary(0.00);
         this.props.setPriceRange({
             minimumQuantity: 0,
             maximumQuantity: 0,
@@ -33,6 +34,7 @@ class ProductPricing extends Component {
             range.forEach(barem => {
                 if (value >= barem.minimumQuantity && value <= barem.maximumQuantity) {
                     this.props.setPriceRange(barem);
+                    this.props.setSummary(parseFloat(barem.price) * value);
                     isPriceRangeSet = true;
                 }
             });
@@ -40,6 +42,7 @@ class ProductPricing extends Component {
             if (!isPriceRangeSet) {
                 if (value > range[range.length - 1].maximumQuantity) {
                     this.props.setPriceRange(range[range.length - 1]);
+                    this.props.setSummary(parseFloat(range[range.length - 1].price) * value);
                 } else {
                     this.resetPriceRange();
                 }
@@ -47,6 +50,7 @@ class ProductPricing extends Component {
         } else {
             this.resetPriceRange();
         }
+
     }
 
     pricingInputKeypressHandler(event) {
@@ -84,7 +88,7 @@ class ProductPricing extends Component {
                 return (
                     <div className={className} key={'range-' + index}>
                         <div>{barem.minimumQuantity} - {barem.maximumQuantity} {array.length === index + 1 ? '+' : ''}</div>
-                        <div>{barem.price}</div>
+                        <div>{barem.price} {this.props.product.currency}</div>
                     </div>
                 );
             });
@@ -92,20 +96,20 @@ class ProductPricing extends Component {
             // Make it happen
             return (
                 <div className="product-pricing">
-                    <div className='pricing-group'>
-                        <div className="pricing-group-name">Toptan Fiyat <br /> (Adet)</div>
-                        <div className="pricing-group-content">
+                    <div className='pricing-group detail-container'>
+                        <div className="pricing-group-name detail-title">Toptan Fiyat <br /> (Adet)</div>
+                        <div className="pricing-group-content detail-block">
                             {pricingRanges}
                         </div>
                     </div>
-                    <div className='pricing-group'>
-                        <div className="pricing-group-name">Adet</div>
-                        <div className="pricing-group-content">
+                    <div className='pricing-group detail-container mb-0'>
+                        <div className="pricing-group-name detail-title">Adet</div>
+                        <div className="pricing-group-content detail-block">
                             <div className="pricing-range-input">
                                 <Input onChange={this.pricingInputChangeHandler.bind(this)} onKeyPress={this.pricingInputKeypressHandler} max="500" min="1" />
                                 <span>Adet</span>
                             </div>
-                            <span>Stok Adedi: 500</span>
+                            <Button outline color="success" size="sm">Stok Adedi: 500</Button>
                         </div>
                     </div>
                 </div>
@@ -125,7 +129,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setPriceRange: (product) => dispatch(setPriceRange(product))
+        setPriceRange: (range) => dispatch(setPriceRange(range)),
+        setSummary: (summary) => dispatch(setSummary(summary))
     }
 };
 

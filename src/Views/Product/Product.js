@@ -8,7 +8,8 @@ import './Product.css';
 import ProductMedia from './Partials/ProductMedia/ProductMedia';
 import ProductHeader from './Partials/ProductHeader/ProductHeader';
 import ProductFilters from './Partials/ProductFilters/ProductFilters';
-import ProductPricing from './Partials/ProductPricing/ProductPricing.js';
+import ProductPricing from './Partials/ProductPricing/ProductPricing';
+import ProductFooter from './Partials/ProductFooter/ProductFooter';
 
 class Product extends Component {
 
@@ -24,8 +25,9 @@ class Product extends Component {
                 </section>
                 <section className="details-section">
                     <ProductHeader product={this.props.product} />
-                    <ProductFilters></ProductFilters>
-                    <ProductPricing></ProductPricing>
+                    <ProductFilters />
+                    <ProductPricing />
+                    <ProductFooter summary={this.props.summary} currency={this.props.product.currency} />
                 </section>
             </div>
         )
@@ -34,7 +36,8 @@ class Product extends Component {
 
 const mapStateToProps = state => {
     return {
-        product: state.product
+        product: state.product,
+        summary: state.summary
     }
 }
 

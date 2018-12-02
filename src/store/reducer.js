@@ -6,6 +6,7 @@ const initialState = {
     filters: [],
     filteredVariants: [],
     selectableAttributes: [],
+    summary: 0.00,
     priceRange: {
         minimumQuantity: 0,
         maximumQuantity: 0,
@@ -81,6 +82,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 priceRange: action.payload
+            }
+
+        case actions.PRODUCT_PRICE_SUMMARY:
+            return {
+                ...state,
+                summary: action.payload.toFixed(2)
             }
 
         default:
