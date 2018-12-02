@@ -19,7 +19,7 @@ class Product extends Component {
         return (
             <div className="product">
                 <section className="media-section">
-                    <ProductMedia variants={this.props.filteredVariants} />
+                    <ProductMedia />
                 </section>
                 <section className="details-section">
                     <ProductHeader product={this.props.product} />
