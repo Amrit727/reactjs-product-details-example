@@ -6,7 +6,11 @@ const initialState = {
     filters: [],
     filteredVariants: [],
     selectableAttributes: [],
-    priceRange: null
+    priceRange: {
+        minimumQuantity: 0,
+        maximumQuantity: 0,
+        price: 0.00
+    }
 }
 
 const reducer = (state = initialState, action) => {
@@ -23,7 +27,8 @@ const reducer = (state = initialState, action) => {
             const filteredVariants = [];
             const filters = [...state.filters];
             const filterIndex = filters.findIndex(item => item.name === action.payload.name);
-
+            
+            // Add, update or remove filter
             if (filterIndex > -1 && action.payload.value != null) {
                 filters[filterIndex] = action.payload;
             } else if (filters[filterIndex] == null) {
@@ -32,6 +37,7 @@ const reducer = (state = initialState, action) => {
                 filters.splice(filterIndex, 1);
             }
 
+            // Default is first product variants if there is no filter
             if (filters.length === 0) {
                 return {
                     ...state,
@@ -42,10 +48,12 @@ const reducer = (state = initialState, action) => {
 
             // Filter variants
             if (isArray(state.product.productVariants)) {
+                // In every variant
                 state.product.productVariants.forEach(variant => {
                     let filtersPassed = 0;
                     
                     variant.attributes.forEach(attr => {
+                        // For every selected filter
                         filters.forEach((filter, index) => {
                             if (filter.name === attr.name && filter.value === attr.value) {
                                 filtersPassed++;
@@ -68,6 +76,12 @@ const reducer = (state = initialState, action) => {
                 filters: filters,
                 filteredVariants: filteredVariants
             };
+
+        case actions.PRODUCT_PRICE_RANGE:
+            return {
+                ...state,
+                priceRange: action.payload
+            }
 
         default:
             return state;

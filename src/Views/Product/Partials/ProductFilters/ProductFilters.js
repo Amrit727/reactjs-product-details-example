@@ -20,7 +20,7 @@ class ProductFilters extends Component {
         let filters = [];
 
         if (isArray(this.props.selectableAttributes)) {
-            this.props.selectableAttributes.forEach((attr, selectableIndex) => {
+            this.props.selectableAttributes.forEach(attr => {
                 // Create buttons
                 const buttons = [];
 

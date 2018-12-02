@@ -1,8 +1,9 @@
 {
     "title": "İş Tulumu Bahçıvan Tip Askılı",
-    "price": {
-        "currency": "TL",
-        "value": 3000.00
+    "currency": "TL",
+    "priceRange": {
+        "from": 79.99,
+        "to": 99.99
     },
     "selectableAttributes": [
         {
@@ -111,17 +112,17 @@
         {
             "minimumQuantity": 120,
             "maximumQuantity": 599,
-            "price": 9.5
+            "price": 99.99
         },
         {
             "minimumQuantity": 600,
             "maximumQuantity": 799,
-            "price": 8.46
+            "price": 89.99
         },
         {
             "minimumQuantity": 800,
-            "maximumQuantity": 2147483647,
-            "price": 7.13
+            "maximumQuantity": 1000,
+            "price": 79.99
         }
     ]
 }

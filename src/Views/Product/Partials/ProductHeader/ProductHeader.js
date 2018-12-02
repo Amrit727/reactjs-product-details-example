@@ -8,8 +8,8 @@ const header = (props) => {
         <div className="product-header">
             <h3>{product.title}</h3>
             <span>{
-                product.price != null
-                    ? product.price.value + ' ' +product.price.currency
+                product.priceRange != null
+                    ? product.priceRange.from + ' - ' + product.priceRange.to + ' ' + product.currency
                     : null
             }
             </span>
